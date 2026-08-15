@@ -28,7 +28,9 @@ SECRET_KEY = 'django-insecure-zxe-b6^u4=^i8f6!b+-$@2tzr$8xvemeh2&0(=xymamfmg9c6b
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['TechHub.onrender.com']   
+#ALLOWED_HOSTS = ['TechHub.onrender.com'] 
+ALLOWED_HOSTS = os.environ.get('RENDER_EXTERNAL_HOSTNAME', '').split(',')  
+CSRF_TRUSTED_ORIGINS = [f'https://{host}' for host in ALLOWED_HOSTS if host]
 
 
 
